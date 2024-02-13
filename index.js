@@ -36,11 +36,11 @@ app.get("/getUser/:id", (req, res) => {
 });
 app.put("/updateUser/:id", (req, res) => {
   const id = req.params.id;
-  const { name, price, volume, mom, dad, score } = req.body;
+  const { name, price, volume, mon, dad, score } = req.body;
 
   UserModel.findByIdAndUpdate(
     id,
-    { name, price, volume, mom, dad, score },
+    { name, price, volume, mon, dad, score },
     { new: true }
   ) // { new: true } option returns the updated document
     .then((updatedUser) => res.json(updatedUser))
