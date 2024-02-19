@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const UserModel = require("./model/User");
-
+const port = 3002;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -36,16 +36,44 @@ app.get("/getUser/:id", (req, res) => {
 });
 app.put("/updateUser/:id", (req, res) => {
   const id = req.params.id;
-  const { name, price, volume, mon, dad, score } = req.body;
+  const {
+    name,
+    specie,
+    volume,
+    age,
+    history,
+    weight,
+    mon,
+    dad,
+    date,
+    human,
+    placeborn,
+    placefeed,
+    health,
+  } = req.body;
 
   UserModel.findByIdAndUpdate(
     id,
-    { name, price, volume, mon, dad, score },
+    {
+      name,
+      specie,
+      volume,
+      age,
+      history,
+      weight,
+      mon,
+      dad,
+      date,
+      human,
+      placeborn,
+      placefeed,
+      health,
+    },
     { new: true }
   ) // { new: true } option returns the updated document
     .then((updatedUser) => res.json(updatedUser))
     .catch((err) => res.json(err));
 });
 app.listen(3002, () => {
-  console.log(`port listasadsen 3002`);
+  console.log(`port listasadsen ${port} `);
 });
